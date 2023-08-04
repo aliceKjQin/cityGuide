@@ -1,0 +1,24 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block page_header %}
+  <h1 class="text-center">Cafes/Tea Houses ☕</h1>
+{% endblock page_header %}
+
+{% block content %}
+<div class="text-center">
+  <ul>
+    {% for cafe in cafes %}
+      <li>
+        <h4>{{ cafe }}</h4>
+        <p>Location: {{ cafe.location }} &nbsp; <a href="{{ cafe.google_map }}">map</a><span></p>
+        {% if cafe.cafe_image %}
+          <img src="{{ cafe.cafe_image.url }}" width="500" class="img-fluid rounded" alt="cafe">
+        {% endif %}
+      </li>
+      <br>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

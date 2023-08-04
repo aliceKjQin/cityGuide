@@ -1,0 +1,24 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block page_header %}
+  <h1 class="text-center">Hiking Spots ⛰️</h1>
+{% endblock page_header %}
+
+{% block content %}
+  <div class="text-center">
+    <ul>
+      {% for hike in hikes %}
+        <li>
+          <h4>{{ hike }}</h4>
+          <p>{{ hike.location }} &nbsp; <a href="{{ hike.google_map }}">map</a></p>
+          {% if hike.hiking_image %}
+            <img src="{{ hike.hiking_image.url }}" width="500px" class="img-fluid rounded">
+          {% endif %}
+        </li>
+        <br>
+      {% endfor %}
+    </ul>
+  </div>  
+{% endblock content %}

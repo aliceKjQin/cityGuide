@@ -1,0 +1,21 @@
+
+ul {
+    list-style-type: none;
+}
+
+.flexbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 30px;
+}
+
+.flexbox-item {
+    width: 500px;
+    margin: 10px;
+}
+
+.flexbox-item.flexbox-item-1, .flexbox-item.flexbox-item-4 {
+    width: 400px;
+}

@@ -1,0 +1,23 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+{% load static  %}
+
+
+{% block page_header %}
+  <h4 class="text-center">Just a guide to help you explore Lijiang and its surroundings 😺</h4>
+{% endblock page_header %}
+
+{% block content %}
+
+  <div class="flexbox-container d-flex">
+  
+      <div class="flexbox-item flexbox-item-1"><img src="{% static 'lijiang_guide/shaxi_2.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+      <div class="flexbox-item flexbox-item-2"><img src="{% static 'lijiang_guide/dayan.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+      <div class="flexbox-item flexbox-item-3"><img src="{% static 'lijiang_guide/shaxi_ancient_town.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+      <div class="flexbox-item flexbox-item-4"><img src="{% static 'lijiang_guide/road_view.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+      <div class="flexbox-item flexbox-item-5"><img src="{% static 'lijiang_guide/lover_bridge.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+      <div class="flexbox-item flexbox-item-6"><img src="{% static 'lijiang_guide/lugu_lake.jpeg' %}" alt="image" class="img-fluid rounded"></div>
+    
+  </div>
+
+{% endblock content %}
