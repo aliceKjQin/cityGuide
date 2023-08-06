@@ -9,12 +9,14 @@
 {% block content %}
   <div class="text-center">
     <ul>
-      {% for hike in hikes %}
+      {% for trail in trails %}
         <li>
-          <h4>{{ hike }}</h4>
-          <p>{{ hike.location }} &nbsp; <a href="{{ hike.google_map }}">map</a></p>
-          {% if hike.hiking_image %}
-            <img src="{{ hike.hiking_image.url }}" width="500px" class="img-fluid rounded">
+          <h4>{{ trail }}</h4>
+          <p>{{ trail.location }} &nbsp; <a href="{{ trail.google_map }}">map</a></p>
+          {% if trail.hiking_image %}
+            <a href="{% url 'lijiang_guide:trail' trail.id %}">
+              <img src="{{ trail.hiking_image.url }}" width="500px" class="img-fluid rounded">
+            </a>
           {% endif %}
         </li>
         <br>

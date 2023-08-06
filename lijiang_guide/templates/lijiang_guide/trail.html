@@ -1,0 +1,14 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h1>{{ trail }}</h1>
+  <p>Location: {{ trail.location }} &nbsp; <a href="{{ cafe.google_map }}">map</a><span></p>
+{% endblock page_header %}
+
+{% block content %}
+    <p>placeholder for trail images and description</p>
+
+    <p>placeholder for a form so user can give a rating for the trail</p>
+{% endblock content %}
