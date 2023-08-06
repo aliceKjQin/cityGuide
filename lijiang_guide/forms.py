@@ -5,4 +5,4 @@ class TrailReviewForm(forms.ModelForm):
     class Meta:
         model = TrailReview
         fields = ['review', 'rating']
-        
+    

@@ -8,8 +8,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     # Hiking page
     path('hiking/', views.hiking, name='hiking'),
-    # Individual hiking spot page
-    path('hiking/<int:trail_id>', views.Trail, name='trail'),
+    # Particular trail page
+    path('hiking/<int:trail_id>', views.trail, name='trail'),
+    # Particular trail review page
+    path('trail_reviews/<int:trail_id>', views.trail_reviews, name='trail_reviews'),
     # Cafe page
     path('cafe/', views.cafe, name='cafe'),
 ]

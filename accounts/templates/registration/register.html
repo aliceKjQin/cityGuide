@@ -1,0 +1,10 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <form action="{% url 'accounts:register' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Register">
+  </form>
+{% endblock content %}

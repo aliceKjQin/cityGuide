@@ -1,0 +1,17 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h3>Reviews for {{ trail }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <ul>
+    {% for review in reviews %}
+      <li><p>{{ review.user}}: {{ review|safe }}</p></li>
+    {% empty %}
+      <p>No reviews yet, be the first one!</p>
+    {% endfor %}
+  </ul>
+{% endblock content %}

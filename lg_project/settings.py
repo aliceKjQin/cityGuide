@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My apps
     "lijiang_guide",
+    "accounts",
 
     # Third party apps
     'django_bootstrap5',
@@ -136,3 +137,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# My settings
+LOGIN_REDIRECT_URL = 'lijiang_guide:index'
+LOGOUT_REDIRECT_URL = 'lijiang_guide:index'
+    # redirect to login url if user is not logged in, checked by @login_required
+LOGIN_URL = 'accounts:login' 

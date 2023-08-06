@@ -1,0 +1,14 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  {% if form.error %}
+    <p>You name and password didn't match</p>
+  {% endif %}
+
+  <form action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Login">
+  </form>
+{% endblock content %}
