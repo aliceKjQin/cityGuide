@@ -1,4 +1,7 @@
 
+ul {
+    list-style: none;
+}
 
 .flexbox-container {
     display: flex;

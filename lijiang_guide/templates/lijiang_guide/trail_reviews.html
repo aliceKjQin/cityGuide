@@ -9,7 +9,7 @@
 {% block content %}
   <ul>
     {% for review in reviews %}
-      <li><p>{{ review.user}}: {{ review|safe }}</p></li>
+      <li><p>{{ review.user.username|title }} reviewed on {{ review.date|date:"Y-m-d" }}:<br> {{ review.review }}</p></li>
     {% empty %}
       <p>No reviews yet, be the first one!</p>
     {% endfor %}

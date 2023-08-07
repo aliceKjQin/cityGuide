@@ -12,9 +12,13 @@
   {% bootstrap_css %}
   {% bootstrap_javascript %}
 
-  <link rel="stylesheet" type="text/css" href="{% static '/custom.css' %}">
+  <!-- custom css & js -->
+  <link rel="stylesheet" href="{% static 'custom.css' %}">
 
-  <script src="https://kit.fontawesome.com/b166bd5f30.js" crossorigin="anonymous"></script>
+  <script src="{% static 'main.js' %}" defer></script>
+
+  <!-- Font awesome -->
+  
 
 </head>
 <body>
@@ -64,7 +68,6 @@
       {% block content %}{% endblock content %}
     </div>
   </main>
-
 
 </body>
 </html>

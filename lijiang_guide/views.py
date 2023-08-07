@@ -12,6 +12,7 @@ def hiking(request):
         'trails': trails,
     })
 
+
 def trail(request, trail_id):
     trail = Hiking.objects.get(id=trail_id)
     # Get the latest 5 reviews
@@ -24,6 +25,7 @@ def trail(request, trail_id):
         if form.is_valid():
             review = form.save(commit=False)
             review.trail = trail
+            review.user = request.user
             review.save()
             form = TrailReviewForm
 
@@ -40,7 +42,7 @@ def trail_reviews(request, trail_id):
     
     return render(request, 'lijiang_guide/trail_reviews.html', {
         'trail': trail,
-        'reviews': reviews
+        'reviews': reviews,
     })
 
 
