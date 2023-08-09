@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Hiking, Cafe, TrailReview
+from .models import Hiking, Cafe, TrailReview, Rental
 from .forms import TrailReviewForm
 from django.contrib.auth.decorators import login_required
 
@@ -52,3 +52,8 @@ def cafe(request):
         'cafes': cafes,
     })
 
+def rental(request):
+    rentals = Rental.objects.all()
+    return render(request, 'lijiang_guide/rental.html', {
+        'rentals': rentals,
+    })

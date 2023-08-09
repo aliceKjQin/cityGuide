@@ -46,4 +46,17 @@ class Cafe(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Rental(models.Model):
+    name = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    map = models.URLField()
+    rental_main = models.ImageField(null=True, blank=True, upload_to='rental_images')
+    living_room = models.ImageField(null=True, blank=True, upload_to='rental_images')
+    bedroom = models.ImageField(null=True, blank=True, upload_to='rental_images')
+    bathroom = models.ImageField(null=True, blank=True, upload_to='rental_images')
+
+    def __str__(self):
+        return self.name
 

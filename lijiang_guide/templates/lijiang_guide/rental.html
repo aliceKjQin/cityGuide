@@ -1,0 +1,22 @@
+{% extends 'lijiang_guide/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block page_header %}
+  <h1 class="text-center">Rentals</h1>
+{% endblock page_header %}
+
+{% block content %}
+  <div class="text-center">
+    <ul>
+      {% for rental in rentals %}
+        <li>
+          <h4>{{ rental }}</h4>
+          <p>{{ rental.location }} &nbsp <a href="{{ rental.map }}">map</a></p>
+          <img src="{{ rental.rental_main.url }}" width="500px" class="img-fluid rounded">
+        </li>
+      {% empty %}
+        <p>Coming soon ...</p>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock content %}

@@ -14,4 +14,6 @@ urlpatterns = [
     path('trail_reviews/<int:trail_id>', views.trail_reviews, name='trail_reviews'),
     # Cafe page
     path('cafe/', views.cafe, name='cafe'),
+    # Rental page
+    path('rental/', views.rental, name='rental')
 ]
