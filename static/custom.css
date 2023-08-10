@@ -19,3 +19,17 @@ ul {
 .flexbox-item.flexbox-item-1, .flexbox-item.flexbox-item-4 {
     width: 400px;
 }
+
+/* star-rating */
+.star {
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    /* unfilled star color */
+    color: #ccc; 
+}
+
+.star.filled {
+    /* filled star color */
+    color: #f0a500;
+}

@@ -15,5 +15,7 @@ urlpatterns = [
     # Cafe page
     path('cafe/', views.cafe, name='cafe'),
     # Rental page
-    path('rental/', views.rental, name='rental')
+    path('rental/', views.rental, name='rental'),
+    # Paypal checkout page
+    path('paypal_checkout', views.paypal_checkout, name='paypal_checkout')
 ]

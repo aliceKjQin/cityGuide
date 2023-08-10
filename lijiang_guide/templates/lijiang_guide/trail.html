@@ -29,10 +29,20 @@
       <form action="{% url 'lijiang_guide:trail' trail.id %}" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
+
+        <div id="star-container">
+          {% for _ in rating %}
+            <span class="star">
+              <i class="fas fa-star"></i>
+            </span>
+          {% endfor %}
+        </div>
+        <br>
         <input type="submit" value="Submit review">
       </form>
     {% else %}
       <a href="{% url 'accounts:login' %}"><p>Log in to write review</p></a>
     {% endif %}
+
 
 {% endblock content %}

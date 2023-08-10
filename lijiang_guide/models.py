@@ -28,6 +28,7 @@ class TrailReview(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        # Plural name for admin interface for model TrailReview
         verbose_name_plural = "Trail Reviews"
 
     def __str__(self):

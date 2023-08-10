@@ -17,6 +17,7 @@ def trail(request, trail_id):
     trail = Hiking.objects.get(id=trail_id)
     # Get the latest 5 reviews
     latest_reviews = TrailReview.objects.filter(trail=trail).order_by('-date')[:5]
+    rating = TrailReview.RATING
     
     if request.method != 'POST':
         form = TrailReviewForm
@@ -33,6 +34,7 @@ def trail(request, trail_id):
         'trail': trail,
         'form': form,
         'latest_reviews': latest_reviews,
+        'rating': rating,
     })
 
 @login_required
@@ -57,3 +59,6 @@ def rental(request):
     return render(request, 'lijiang_guide/rental.html', {
         'rentals': rentals,
     })
+
+def paypal_checkout(request):
+    ...
