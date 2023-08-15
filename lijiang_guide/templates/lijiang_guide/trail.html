@@ -44,5 +44,21 @@
       <a href="{% url 'accounts:login' %}"><p>Log in to write review</p></a>
     {% endif %}
 
+    <!-- Fill stars on mouseover and on click -->
+    <script>
+      const starContainer = document.querySelector('#star-container')
+      const stars = [...starContainer.querySelectorAll('.star')]
 
+      stars.forEach((star, index) => {
+          star.addEventListener('mouseover', () =>{
+              stars.forEach((s, i) => {
+                  if (i <= index) {
+                      s.classList.add('filled');
+                  } else {
+                      s.classList.remove('filled')
+                  }
+              })    
+          })
+      })
+    </script>
 {% endblock content %}
