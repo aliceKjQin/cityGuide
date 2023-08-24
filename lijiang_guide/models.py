@@ -13,13 +13,9 @@ class Hiking(models.Model):
     
 
 class TrailReview(models.Model):
-    RATING = [
-        (1, 'One Star' ),
-        (2, 'Two Stars'),
-        (3, 'Three Stars'),
-        (4, 'Four Stars'),
-        (5, 'Five Stars'),
-    ]
+
+    # rating scale 1-5
+    rating_scale = [1, 2 , 3, 4, 5]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     trail = models.ForeignKey(Hiking, on_delete=models.CASCADE)

@@ -5,7 +5,7 @@
 
 {% block page_header %}
   <h1>{{ trail }}</h1>
-  <p>Location: {{ trail.location }} &nbsp; <a href="{{ cafe.google_map }}">map</a><span></p>
+  <p>Location: {{ trail.location }} &nbsp; <a href="{{ trail.google_map }}">map</a><span></p>
 {% endblock page_header %}
 
 {% block content %}
@@ -45,7 +45,7 @@
         {% bootstrap_form form %}
 
         <div id="star-container">
-          {% for _ in rating %}
+          {% for _ in scale %}
             <span class="star">
               <i class="fas fa-star"></i>
             </span>
@@ -58,32 +58,4 @@
       <a href="{% url 'accounts:login' %}"><p>Log in to write review</p></a>
     {% endif %}
 
-    <!-- star rating js -->
-    <script>
-      const starContainer = document.querySelector('#star-container')
-      const stars = [...starContainer.querySelectorAll('.star')]
-      let selectedRating = 0
-      //Fill stars on mouseover
-      stars.forEach((star, index) => {
-          star.addEventListener('mouseover', () =>{
-              selectedRating = index + 1 
-              stars.forEach((s, i) => {
-                  if (i <= index) {
-                      s.classList.add('filled');
-                  } else {
-                      s.classList.remove('filled')
-                  }
-              })    
-          })
-      })
-      //Capture the form submission and set the hidden input value
-      const form = document.querySelector('#rating-form')
-      form.addEventListener('submit', () => {
-        const hiddenInput = document.createElement('input')
-        hiddenInput.type = 'hidden'
-        hiddenInput.name = 'star_rating'
-        hiddenInput.value = selectedRating
-        form.appendChild(hiddenInput)
-      })
-    </script>
 {% endblock content %}
