@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Hiking, Cafe, TrailReview, Rental
 from .forms import TrailReviewForm
 from django.contrib.auth.decorators import login_required
@@ -18,9 +18,9 @@ def trail(request, trail_id):
     # Get the latest 5 reviews
     latest_reviews = TrailReview.objects.filter(trail=trail).order_by('-date')[:5]
     rating = TrailReview.RATING
-    
+
     if request.method != 'POST':
-        form = TrailReviewForm
+        form = TrailReviewForm()
     else:
         form = TrailReviewForm(request.POST)
         if form.is_valid():
@@ -28,7 +28,7 @@ def trail(request, trail_id):
             review.trail = trail
             review.user = request.user
             review.save()
-            form = TrailReviewForm
+            return redirect('lijiang_guide:success_rating')
 
     return render(request, 'lijiang_guide/trail.html', {
         'trail': trail,
@@ -36,6 +36,12 @@ def trail(request, trail_id):
         'latest_reviews': latest_reviews,
         'rating': rating,
     })
+
+    
+
+@login_required
+def success_rating(request):
+    return render(request, 'lijiang_guide/success_rating.html')
 
 @login_required
 def trail_reviews(request, trail_id):

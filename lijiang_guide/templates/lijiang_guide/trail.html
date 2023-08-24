@@ -1,6 +1,7 @@
 {% extends 'lijiang_guide/base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% load custom_tags %}
 
 {% block page_header %}
   <h1>{{ trail }}</h1>
@@ -16,7 +17,20 @@
     <ul>
       <h5>Reviews:</h5>
       {% for review in latest_reviews %}
-        <li><p>{{review.user.username|title }} reviewed on {{review.date|date:"Y-m-d" }}:<br> {{ review }}</p></li>
+        <li>
+          <p>{{review.user.username|title }} reviewed on {{review.date|date:"Y-m-d" }}:
+            <p>
+              Rating: 
+              <!-- refer to the custom tags defined in custom_tags.py as can't directly call range() in template -->
+              {% for _ in review.star_rating|get_star_rating_range %}
+                <span class="star filled">
+                <i class="fas fa-star"></i>
+                </span>
+              {% endfor %}
+            </p>
+            {{ review }}
+          </p>
+        </li>
       {% empty %}
         <p>No reviews yet, be the first one!</p>
       {% endfor %}
@@ -26,7 +40,7 @@
     <br><br>
 
     {% if user.is_authenticated %}
-      <form action="{% url 'lijiang_guide:trail' trail.id %}" method="post">
+      <form id='rating-form' action="{% url 'lijiang_guide:trail' trail.id %}" method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
 
@@ -44,13 +58,15 @@
       <a href="{% url 'accounts:login' %}"><p>Log in to write review</p></a>
     {% endif %}
 
-    <!-- Fill stars on mouseover and on click -->
+    <!-- star rating js -->
     <script>
       const starContainer = document.querySelector('#star-container')
       const stars = [...starContainer.querySelectorAll('.star')]
-
+      let selectedRating = 0
+      //Fill stars on mouseover
       stars.forEach((star, index) => {
           star.addEventListener('mouseover', () =>{
+              selectedRating = index + 1 
               stars.forEach((s, i) => {
                   if (i <= index) {
                       s.classList.add('filled');
@@ -59,6 +75,15 @@
                   }
               })    
           })
+      })
+      //Capture the form submission and set the hidden input value
+      const form = document.querySelector('#rating-form')
+      form.addEventListener('submit', () => {
+        const hiddenInput = document.createElement('input')
+        hiddenInput.type = 'hidden'
+        hiddenInput.name = 'star_rating'
+        hiddenInput.value = selectedRating
+        form.appendChild(hiddenInput)
       })
     </script>
 {% endblock content %}

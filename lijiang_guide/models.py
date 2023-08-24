@@ -24,7 +24,7 @@ class TrailReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     trail = models.ForeignKey(Hiking, on_delete=models.CASCADE)
     review = models.TextField()
-    rating = models.IntegerField(choices=RATING, default=None)
+    star_rating = models.IntegerField(default=None)
     date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
