@@ -19,15 +19,15 @@
       {% for review in latest_reviews %}
         <li>
           <p>{{review.user.username|title }} reviewed on {{review.date|date:"Y-m-d" }}:
-            <p>
-              Rating: 
-              <!-- refer to the custom tags defined in custom_tags.py as can't directly call range() in template -->
-              {% for _ in review.star_rating|get_star_rating_range %}
-                <span class="star filled">
-                <i class="fas fa-star"></i>
-                </span>
-              {% endfor %}
-            </p>
+            <br>
+            Rating: 
+            <!-- refer to the custom tags defined in custom_tags.py as can't directly call range() in template -->
+            {% for _ in review.star_rating|get_star_rating_range %}
+              <span class="star filled">
+              <i class="fas fa-star"></i>
+              </span>
+            {% endfor %}
+            <br>
             {{ review }}
           </p>
         </li>

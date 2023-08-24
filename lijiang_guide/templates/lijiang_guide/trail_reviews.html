@@ -1,6 +1,7 @@
 {% extends 'lijiang_guide/base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
+{% load custom_tags %}
 
 {% block page_header %}
   <h3>Reviews for {{ trail }}</h3>
@@ -9,7 +10,18 @@
 {% block content %}
   <ul>
     {% for review in reviews %}
-      <li><p>{{ review.user.username|title }} reviewed on {{ review.date|date:"Y-m-d" }}:<br> {{ review.review }}</p></li>
+      <li>
+        <p>
+          {{ review.user.username|title }} reviewed on {{ review.date|date:"Y-m-d" }}:
+          <br> 
+          Rating : 
+            {% for _ in review.star_rating|get_star_rating_range %}
+              <span class="star filled"><i class="fas fa-star"></i></span>
+            {% endfor %}
+          <br> 
+          {{ review.review }}
+        </p>
+      </li>
     {% empty %}
       <p>No reviews yet, be the first one!</p>
     {% endfor %}
