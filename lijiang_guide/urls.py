@@ -19,5 +19,5 @@ urlpatterns = [
     # Rental page
     path('rental/', views.rental, name='rental'),
     # Paypal checkout page
-    path('paypal_checkout', views.paypal_checkout, name='paypal_checkout')
+    path('paypal_checkout/', views.paypal_checkout, name='paypal_checkout')
 ]

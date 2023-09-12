@@ -4,6 +4,9 @@
 
 {% block page_header %}
   <h1 class="text-center">Cafes/Tea Houses ☕</h1>
+  <form method="get" action="{% url 'lijiang_guide:cafe' %}">
+    <input type="text" name="q" placeholder="Search Cafes...">
+  </form>
 {% endblock page_header %}
 
 {% block content %}

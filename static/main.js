@@ -1,7 +1,7 @@
 // js for star rating
 
 const starContainer = document.querySelector('#star-container')
-const stars = [...starContainer.querySelectorAll('.star')]
+const stars = starContainer.querySelectorAll('.star')
 let selectedRating = 0
 //Fill stars on mouseover
 stars.forEach((star, index) => {

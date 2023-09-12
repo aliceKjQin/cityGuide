@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect
 from .models import Hiking, Cafe, TrailReview, Rental
 from .forms import TrailReviewForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 def index(request):
     return render(request, 'lijiang_guide/index.html')
 
 def hiking(request):
-    trails = Hiking.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    trails = Hiking.objects.filter(
+        Q(name__icontains=q)|
+        Q(location__icontains=q)|
+        Q(description__icontains=q)
+    )
     return render(request, 'lijiang_guide/hiking.html', {
         'trails': trails,
     })
@@ -17,7 +23,7 @@ def trail(request, trail_id):
     trail = Hiking.objects.get(id=trail_id)
     # Get the latest 5 reviews
     latest_reviews = TrailReview.objects.filter(trail=trail).order_by('-date')[:5]
-    scale = TrailReview.rating_scale
+    scale = [1, 2 , 3, 4, 5]
 
     if request.method != 'POST':
         form = TrailReviewForm()
@@ -55,7 +61,12 @@ def trail_reviews(request, trail_id):
 
 
 def cafe(request):
-    cafes = Cafe.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    cafes = Cafe.objects.filter(
+        Q(name__icontains=q)|
+        Q(location__icontains=q)
+    )
     return render(request, 'lijiang_guide/cafe.html', {
         'cafes': cafes,
     })
@@ -67,4 +78,4 @@ def rental(request):
     })
 
 def paypal_checkout(request):
-    ...
+    return render(request, 'lijiang_guide/paypal_checkout.html')

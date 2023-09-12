@@ -13,10 +13,6 @@ class Hiking(models.Model):
     
 
 class TrailReview(models.Model):
-
-    # rating scale 1-5
-    rating_scale = [1, 2 , 3, 4, 5]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     trail = models.ForeignKey(Hiking, on_delete=models.CASCADE)
     review = models.TextField()
